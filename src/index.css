@@ -33,3 +33,10 @@ code {
 .certain-category-search-dropdown .ant-select-dropdown-menu {
   max-height: 300px;
 }
+
+.loader {
+  height: 81vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

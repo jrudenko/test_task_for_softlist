@@ -1,0 +1,48 @@
+/* Для ширины экрана 375px и менее */
+@media (max-width: 375px) {
+:where(.css-dev-only-do-not-override-w8mnev)[class^="ant-layout"] [class^="ant-layout"],
+    :where(.css-dev-only-do-not-override-w8mnev)[class*=" ant-layout"] [class^="ant-layout"],
+    :where(.css-dev-only-do-not-override-w8mnev)[class^="ant-layout"] [class*=" ant-layout"],
+    :where(.css-dev-only-do-not-override-w8mnev)[class*=" ant-layout"] [class*=" ant-layout"] {
+        box-sizing: content-box;
+        
+    }
+    /* .ant-layout-sider-trigger{
+        box-sizing: content-box;
+        width: 100%;
+        } */
+    .layout-sider {
+        position: fixed;
+        box-sizing: content-box;
+            width: 100%;
+            min-height: "100vh";
+            box-sizing: content-box;
+            width: 100%;    
+            padding: 8px;
+        }
+
+
+   .layout-container {
+    min-height: "100vh";
+        box-sizing: content-box;
+        width: 500px;
+        padding: 14px;
+   }
+    
+   
+
+  
+}
+
+/* Для ширины экрана от 376px до 767px */
+@media (min-width: 376px) and (max-width: 767px) {
+    
+        }
+
+
+
+/* Для ширины экрана от 768px до 1439px */
+@media (min-width: 768px) and (max-width: 1439px) {
+   
+    
+      }     
