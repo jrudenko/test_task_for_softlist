@@ -1,113 +1,45 @@
-// import { Button, Table } from 'antd';
-// import axios from 'axios';
-// import React, { Component } from 'react';
-// const express = require('express');
-// // const axios = require('axios');
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData } from '../redux/actions';
 
-// const app = express();
-// const port = 3000;
+const TenderList = () => {
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.data);
+  const isLoading = useSelector((state) => state.isLoading);
+  const error = useSelector((state) => state.error);
 
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
 
-// class TenderList extends Component {
-//   state = {
-//     tenders: [],
-//     loading: false
-//   };
-
-//   fetchTenders = () => {
-//     this.setState({ loading: true });
-
-//     app.get('/api/tenders', (req, res) => {
-//       const apiUrl = 'https://public.api.openprocurement.org/api/2.5/tenders';
-
-//       axios.get(apiUrl)
-//         .then(response => {
-//           res.send(response.data);
-//         })
-//         .catch(error => {
-//           console.error('Error fetching tenders:', error);
-//           res.status(500).send('Internal Server Error');
-//           this.setState({ loading: false });
-//         });
-//     });
-    
-//     app.listen(port, () => {
-//       console.log(`Server running on port ${port}`);
-//     });
-
-//     componentDidMount(){
-//       this.fetchTenders();
-//     };
-  
-//     render() {
-//       const { tenders, loading } = this.state;
-
-//       const columns = [
-//         { title: 'ID', dataIndex: 'id', key: 'id' },
-//         { title: 'Название', dataIndex: 'title', key: 'title' },
-//         // Добавьте другие столбцы, если необходимо
-//       ];
-
-//       return (
-//         <div>
-//           <Button onClick={this.fetchTenders} loading={loading}>
-//             Загрузить тендеры
-//           </Button>
-//           <Table columns={columns} dataSource={tenders} loading={loading} />
-//         </div>
-//       );
-//     }
-
-//   };
-// };
-// export default TenderList;
-
-import React, { Component } from 'react';
-import { Button, Table } from 'antd';
-import axios from 'axios';
-
-class TenderList extends Component {
-  state = {
-    tenders: [],
-    loading: false
-  };
-
-  fetchTenders = () => {
-    this.setState({ loading: true });
-
-    axios.get('https://public.api.openprocurement.org/api/2.5/tenders')
-      .then(response => {
-        const tenders = response.data;
-        this.setState({ tenders, loading: false });
-      })
-      .catch(error => {
-        console.error('Error fetching tenders:', error);
-        this.setState({ loading: false });
-      });
-  };
-
-  componentDidMount() {
-    this.fetchTenders();
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  render() {
-    const { tenders, loading } = this.state;
-
-    const columns = [
-      { title: 'ID', dataIndex: 'id', key: 'id' },
-      { title: 'Название', dataIndex: 'title', key: 'title' },
-      // Добавьте другие столбцы, если необходимо
-    ];
-
-    return (
-      <div>
-        <Button onClick={this.fetchTenders} loading={loading}>
-          Загрузить тендеры
-        </Button>
-        <Table columns={columns} dataSource={tenders} loading={loading} />
-      </div>
-    );
+  if (error) {
+    return <div>Error: {error}</div>;
   }
+
+  return (
+
+    <table>
+      <thead>
+        <tr>
+          <th>Column 1</th>
+          <th>Column 2</th>
+          {/* Добавити треба заголовки стовбчиків таблиці */}
+        </tr>
+      </thead>
+      <tbody>
+        {data.map((item) => (
+          <tr key={item.id}>
+            <td>{item.column1}</td>
+            <td>{item.column2}</td>
+            
+          </tr>)
+        )}
+      </tbody>
+    </table>);
 }
 
 export default TenderList;

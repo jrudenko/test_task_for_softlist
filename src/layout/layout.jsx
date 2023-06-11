@@ -1,5 +1,6 @@
 import TenderList from "../components/TenderList";
-import { useState } from "react";
+import React, { useState } from "react";
+
 import { Breadcrumb, Layout, Menu,  Input, Table, theme, Row, Col } from 'antd';
 import {  AppstoreOutlined } from '@ant-design/icons';
 import logoSvg from "../logo.svg";
@@ -7,7 +8,6 @@ import Footer from "../components/Footer/Footer"
 import './LayoutPage.css'; 
 
 const { Header, Content, Sider } = Layout;
-
 
 
 const LayoutPage = () => {
@@ -26,14 +26,14 @@ const LayoutPage = () => {
       return (
         <div>
           <h1>Головна</h1>
-          {/* Ваше содержимое для элемента "Главная" */}
+          {/* Текст або інформація "Главная" */}
         </div>
       );
     } else if (selectedMenuKey === '2') {
       return (
         <div>
           <h1>Категорії</h1>
-          {/* Ваша таблица для элемента "Категории" */}
+          {/*  Текст або інформація "Категории" */}
           <Row>
             <Col>
               <Table />
@@ -45,7 +45,7 @@ const LayoutPage = () => {
       return (
         <div>
           <h1>Плани закупівел</h1>
-          {/* Ваше содержимое для элемента "Настройки" */}
+          <TenderList/>
           <Row>
             <Col>
               <Table />
@@ -58,7 +58,6 @@ const LayoutPage = () => {
       return (
         <div>
           <h1>Закупівлі</h1>
-          {/* Ваше содержимое для элемента "Настройки" */}
           <TenderList/>
           {/* <Row>
             <Col>
