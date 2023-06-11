@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// Отримуємо данні з API
+// Отримуємо данні з API/
 export const fetchData = () => {
   return (dispatch) => {
     dispatch({ type: "FETCH_DATA_REQUEST" });
