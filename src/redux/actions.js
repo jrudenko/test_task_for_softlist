@@ -6,7 +6,7 @@ export const fetchData = () => {
     dispatch({ type: "FETCH_DATA_REQUEST" });
 
     axios
-      .get("https://public.api.openprocurement.org/api/2.5/plans")
+      .get("https://public.api.openprocurement.org/api/2.5/tenders")
       .then((response) => {
         dispatch({
           type: "FETCH_DATA_SUCCESS",
