@@ -23,10 +23,8 @@ const TenderList = () => {
     return <div>Error: {error}</div>;
   }
 
-  // Configure pagination
-  const pageSize = 10; // Number of items per page
-  const totalItems = data.length; // Total number of items
-  // const totalPages = Math.ceil(totalItems / pageSize); // Total number of pages
+  const pageSize = 10; 
+  const totalItems = data.length; 
 
   const handleChangePage = (page) => {
     setCurrentPage(page);
@@ -43,7 +41,7 @@ const TenderList = () => {
       dataIndex: 'dateModified',
       key: 'dateModified',
     },
-    // Add other columns as needed
+  
   ];
 
   return (
@@ -52,7 +50,7 @@ const TenderList = () => {
         dataSource={paginatedData}
         columns={columns}
         pagination={false}
-        rowKey="id" // Set the key for each row based on the "id" property
+        rowKey="id" 
       />
       <Pagination
         current={currentPage}

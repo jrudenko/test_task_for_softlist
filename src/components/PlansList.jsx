@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../redux/actions';
 import { Table, Pagination } from 'antd';
 import Loader from "./Loader";
+import { Link } from 'react-router-dom';
 
-const TenderList = () => {
+const PlansList = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data);
   const isLoading = useSelector((state) => state.isLoading);
@@ -23,11 +24,10 @@ const TenderList = () => {
     return <div>Error: {error}</div>;
   }
 
-  // Configure pagination
-  const pageSize = 10; // Number of items per page
-  const totalItems = data.length; // Total number of items
-  // const totalPages = Math.ceil(totalItems / pageSize); // Total number of pages
-
+  // Налаштування пагінації
+  const pageSize = 10; // Кількість елементів на сторінці
+  const totalItems = data.length; // Загальна кількість елементів
+ 
   const handleChangePage = (page) => {
     setCurrentPage(page);
   };
@@ -42,8 +42,10 @@ const TenderList = () => {
       title: 'Date Modified',
       dataIndex: 'dateModified',
       key: 'dateModified',
+      render: (text, record) => (
+        <Link to={`/plans/${record.id}`}>{text}</Link>
+      ),
     },
-    // Add other columns as needed
   ];
 
   return (
@@ -52,7 +54,7 @@ const TenderList = () => {
         dataSource={paginatedData}
         columns={columns}
         pagination={false}
-        rowKey="id" // Set the key for each row based on the "id" property
+        rowKey="id" // Ключ для кожного рядка на основі властивості "id".
       />
       <Pagination
         current={currentPage}
@@ -64,4 +66,5 @@ const TenderList = () => {
   );
 }
 
-export default TenderList;
+export default PlansList;
+
