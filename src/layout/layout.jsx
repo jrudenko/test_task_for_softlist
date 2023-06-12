@@ -1,14 +1,13 @@
-import TenderList from "../components/TenderList";
 import React, { useState } from "react";
-
-import { Breadcrumb, Layout, Menu,  Input, Table, theme, Row, Col } from 'antd';
-import {  AppstoreOutlined } from '@ant-design/icons';
+import { Breadcrumb, Layout, Menu, Input, Table, theme, Row, Col } from 'antd';
+import { AppstoreOutlined } from '@ant-design/icons';
 import logoSvg from "../logo.svg";
 import Footer from "../components/Footer/Footer"
-import './LayoutPage.css'; 
+import './LayoutPage.css';
+import TenderList from "../components/TenderList";
+import PlansList from "../components/PlansList";
 
 const { Header, Content, Sider } = Layout;
-
 
 const LayoutPage = () => {
   const [selectedMenuKey, setSelectedMenuKey] = useState(false);
@@ -18,7 +17,6 @@ const LayoutPage = () => {
 
   const handleMenuClick = ({ key }) => {
     setSelectedMenuKey(key);
-    
   };
 
   const renderContent = () => {
@@ -38,32 +36,21 @@ const LayoutPage = () => {
             <Col>
               <Table />
             </Col>
-         </Row>
+          </Row>
         </div>
       );
     } else if (selectedMenuKey === '3') {
       return (
         <div>
           <h1>Плани закупівел</h1>
-          <TenderList/>
-          <Row>
-            <Col>
-              <Table />
-            </Col>
-         </Row>
+          <PlansList />
         </div>
       );
-    }
-    else if (selectedMenuKey === '4') {
+    } else if (selectedMenuKey === '4') {
       return (
         <div>
           <h1>Закупівлі</h1>
-          <TenderList/>
-          {/* <Row>
-            <Col>
-              <Table />
-            </Col>
-         </Row> */}
+          <TenderList />
         </div>
       );
     }
@@ -82,7 +69,7 @@ const LayoutPage = () => {
         <div className="logo">
           <img src={logoSvg} alt="Логотип" width={87} />
         </div>
-        <Menu theme="dark" mode="inline"  defaultSelectedKeys={["1"]} onSelect={handleMenuClick}>
+        <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} onSelect={handleMenuClick}>
           <Menu.Item key="1" icon={<AppstoreOutlined />}>
             Головна
           </Menu.Item>
@@ -94,6 +81,7 @@ const LayoutPage = () => {
           </Menu.Item>
           <Menu.Item key="4" icon={<AppstoreOutlined />}>
             Закупівлі
+         
           </Menu.Item>
         </Menu>
       </Sider>
@@ -129,9 +117,10 @@ const LayoutPage = () => {
             }}
           ></Breadcrumb>
       <Footer />
+
     </Layout>
   </Layout>
-  );
+  )
 };
 
 export default LayoutPage;

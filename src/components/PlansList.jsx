@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDataTenders } from '../redux/actions';
+import { fetchData } from '../redux/actions';
 import { Table, Pagination } from 'antd';
 import Loader from "./Loader";
 
@@ -12,7 +12,7 @@ const TenderList = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispatch(fetchDataTenders());
+    dispatch(fetchData());
   }, [dispatch]);
 
   if (isLoading) {
