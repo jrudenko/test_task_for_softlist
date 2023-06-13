@@ -11,7 +11,7 @@ const TenderDetails = () => {
   useEffect(() => {
     const fetchTenderData = async () => {
       try {
-        const response = await fetch(`https://public.api.openprocurement.org/api/2.5/plans/${id}`);
+        const response = await fetch(`https://public.api.openprocurement.org/api/2.5/tenders/${id}`);
         const data = await response.json();
         setTenderData(data);
       } catch (error) {
@@ -26,35 +26,56 @@ const TenderDetails = () => {
     return <Spin />;
   }
 
-  // Проверка наличия данных о procuringEntity
+  // Перевірка наявності даних про procuringEntity
   const procurementEntity = tenderData.data.procuringEntity;
   const procurementEntityName = procurementEntity ? procurementEntity.name : 'Unknown';
 
-  // Доступ к другим данным тендера
   const { tender, budget, classification, items } = tenderData.data;
 
   return (
-    <div>
-      {/* Отображение деталей тендера */}
-      <Title level={1}>ID: {id}</Title>
-      {/* Отображение других деталей тендера */}
-      <Paragraph>Найменування замовника: {procurementEntityName}</Paragraph>
+<div >
+ 
+  <Title level={1}>ID: {id}</Title>
+  
+  <Paragraph>Найменування замовника: {procurementEntityName}</Paragraph>
+  {tender && tender.tenderPeriod && (
+    <div key="tender-period">
       <Paragraph>Дата оголошення процедури: {tender.tenderPeriod.startDate}</Paragraph>
-      <Paragraph>Очікувана вартість закупівлі: {budget.amount}</Paragraph>
-      <Paragraph>Опис: {classification.description}</Paragraph>
-      {/* Отображение дополнительных деталей тендера, например, items */}
-      <Title level={2}>Вид предмету закупівлі:</Title>
-      {items && items.length > 0 ? (
-        items.map((item) => (
-          <div key={item.id}>
-            <Paragraph strong>Опис: {item.description}</Paragraph>
-            {/* Отображение других деталей элемента */}
-          </div>
-        ))
-      ) : (
-        <Paragraph>Товар не знайдено.</Paragraph>
-      )}
     </div>
+  )}
+  {budget && (
+    <div key="budget">
+      <Paragraph>Очікувана вартість закупівлі: {budget.amount}</Paragraph>
+    </div>
+  )}
+  {classification && (
+    <div key="classification">
+      <Paragraph>Опис: {classification.description}</Paragraph>
+    </div>
+  )}
+  {/* Отображение дополнительных деталей тендера, например, items */}
+  <Title level={2}>Вид предмету закупівлі:</Title>
+  {items && items.length > 0 ? (
+    items.map((item) => (
+      <div key={item.id}>
+        <Paragraph strong>Опис: {item.description}</Paragraph>
+        {/* Отображение других деталей элемента */}
+        {item.unit && <Paragraph>Одиниця виміру: {item.unit.name}</Paragraph>}
+        <Paragraph>Кількість: {item.quantity}</Paragraph>
+        {item.classification && (
+          <Paragraph>Класифікація: {item.classification.description}</Paragraph>
+        )}
+        {item.additionalClassifications && item.additionalClassifications.length > 0 && (
+          <Paragraph>
+            Додаткова класифікація: {item.additionalClassifications[0].description}
+          </Paragraph>
+        )}
+      </div>
+    ))
+  ) : (
+    <Paragraph>Товар не знайдено.</Paragraph>
+  )}
+</div>
   );
 };
 

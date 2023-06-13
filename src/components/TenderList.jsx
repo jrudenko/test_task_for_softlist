@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataTenders } from '../redux/actions';
 import { Table, Pagination } from 'antd';
 import Loader from "./Loader";
+import { Link } from 'react-router-dom';
 
 const TenderList = () => {
   const dispatch = useDispatch();
@@ -40,8 +41,10 @@ const TenderList = () => {
       title: 'Date Modified',
       dataIndex: 'dateModified',
       key: 'dateModified',
+      render: (text, record) => (
+        <Link to={`/tenders/${record.id}`}>{text}</Link>
+      ),
     },
-  
   ];
 
   return (
