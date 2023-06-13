@@ -53,13 +53,13 @@ const TenderDetails = () => {
       <Paragraph>Опис: {classification.description}</Paragraph>
     </div>
   )}
-  {/* Отображение дополнительных деталей тендера, например, items */}
+  {/* Відображення додаткових деталей тендера, наприклад, items */}
   <Title level={2}>Вид предмету закупівлі:</Title>
   {items && items.length > 0 ? (
-    items.map((item) => (
-      <div key={item.id}>
+    items.map((item, index) => (
+          <div key={index}>
         <Paragraph strong>Опис: {item.description}</Paragraph>
-        {/* Отображение других деталей элемента */}
+        {/*Відображення інших деталей*/}
         {item.unit && <Paragraph>Одиниця виміру: {item.unit.name}</Paragraph>}
         <Paragraph>Кількість: {item.quantity}</Paragraph>
         {item.classification && (

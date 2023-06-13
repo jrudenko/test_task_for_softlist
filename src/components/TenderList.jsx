@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDataTenders } from '../redux/actions';
-import { Table, Pagination } from 'antd';
-import Loader from "./Loader";
+import { Spin, Table, Pagination } from 'antd';
 import { Link } from 'react-router-dom';
 
 const TenderList = () => {
@@ -17,7 +16,7 @@ const TenderList = () => {
   }, [dispatch]);
 
   if (isLoading) {
-    return <Loader />;
+    return <Spin />;
   }
 
   if (error) {

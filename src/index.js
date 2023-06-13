@@ -10,7 +10,7 @@ import store from "./redux/store";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={store} basename="test_task_for_softlist">
       <App />
     </Provider>
   </React.StrictMode>
