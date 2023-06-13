@@ -11,8 +11,9 @@ function App() {
       <Routes>
         <Route path="/" element={<LayoutPage />}>
           {/* <Route path="/" element={<HomePage />} /> */}
-          <Route path="/plans/:id" element={<PlansDetails />} />
-          <Route path="/tenders/:id" element={<TenderDetails />} />
+          <Route path="/test_task_for_softlist" element={<LayoutPage />} />
+          <Route path="plans/:id" element={<PlansDetails />} />
+          <Route path="tenders/:id" element={<TenderDetails />} />
         </Route>
       </Routes>
     </Router>
