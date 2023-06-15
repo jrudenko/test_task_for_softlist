@@ -3,7 +3,7 @@ import { Input } from "antd";
 
 const InputSearch = () => {
   const handleSearch = (value) => {
-    // Обработка поискового запроса
+    // Оброблення пошукового запиту
     console.log("Пошук по ID:", value);
   };
 
